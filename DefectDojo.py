@@ -109,32 +109,11 @@ prod_id = get_product_id(prod_name)
 create_engagement(eng_name)
 
 # *************************UPLOAD RESULTS SECTION***************************
-
 def upload():
     # Assignment: Finish the upload function
     eng_id = get_engagement_id(eng_name)
     files = {
-        'file': open('ZAP-report.xml','rb'),
-    }
-    data = {
-            'scan_type':'ZAP Scan',
-        'tags':  'api, api3',
-        'verified': 'false',
-        'active': 'true',
-        'scan_date': start_date.strftime("%Y-%m-%d"),
-        'engagement_name': eng_name,
-        'product_name': prod_name
-            }
-    response = requests.post(host+'/api/v2/import-scan/', headers=Upload_headers, files=files, data=data)
-    print "[+] Uploading " + 'ZAP Scan' +" Response: "+ str(response.content)
-upload()
-
-
-def upload():
-    # Assignment: Finish the upload function
-    eng_id = get_engagement_id(eng_name)
-    files = {
-        'file': open('trivy-docker-image-scan.json','rb'),
+        'file': open('trivy-docker-imagescan.json','rb'),
     }
     data = {
         'scan_type':'Trivy Scan',
@@ -146,24 +125,6 @@ def upload():
         'product_name': prod_name
             }
     response = requests.post(host+'/api/v2/import-scan/', headers=Upload_headers, files=files, data=data)
-    print "[+] Uploading " + 'trivy-docker-image-scan.json' +" Response: "+ str(response.content)
+    print "[+] Uploading " + 'trivy-docker-imagescan.json' +" Response: "+ str(response.content)
 upload()
 
-def upload():
-    # Assignment: Finish the upload function
-    eng_id = get_engagement_id(eng_name)
-    files = {
-        'file': open('trivy-git-repo-scan.json','rb'),
-    }
-    data = {
-        'scan_type':'Trivy Scan',
-        'tags':  'api, api3',
-        'verified': 'false',
-        'active': 'true',
-        'scan_date': start_date.strftime("%Y-%m-%d"),
-        'engagement_name': eng_name,
-        'product_name': prod_name
-            }
-    response = requests.post(host+'/api/v2/import-scan/', headers=Upload_headers, files=files, data=data)
-    print "[+] Uploading " + 'trivy-git-repo-scan.json' +" Response: "+ str(response.content)
-upload()
